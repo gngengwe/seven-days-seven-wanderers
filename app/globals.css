@@ -1,26 +1,217 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0d1b2a;
+  --foreground: #f5ead0;
 }
 
 @theme inline {
+  /* Brand palette */
+  --color-navy:          #0d1b2a;
+  --color-navy-light:    #152535;
+  --color-navy-mid:      #1c3348;
+  --color-gold:          #d4a843;
+  --color-gold-light:    #e8c06a;
+  --color-gold-dim:      #a07830;
+  --color-cream:         #fdf6e3;
+  --color-cream-dark:    #f5ead0;
+  --color-cream-muted:   #c4b490;
+  --color-lavender:      #b8a9e8;
+
+  /* Planet colors */
+  --color-sun:     #f59e0b;
+  --color-moon:    #cbd5e1;
+  --color-mars:    #dc4c2a;
+  --color-mercury: #94a3b8;
+  --color-jupiter: #d4874a;
+  --color-venus:   #f472b6;
+  --color-saturn:  #c89b3c;
+
+  /* Typography */
+  --font-heading: var(--font-playfair), Georgia, 'Times New Roman', serif;
+  --font-body:    var(--font-lora), Georgia, 'Times New Roman', serif;
+
+  /* Tokens */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Animations ─────────────────────────────────────────────────────────── */
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50%       { opacity: 1;   transform: scale(1.1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50%       { transform: translateY(-8px) rotate(2deg); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px 4px currentColor; opacity: 0.85; }
+  50%       { box-shadow: 0 0 40px 12px currentColor; opacity: 1; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+/* ─── Base ───────────────────────────────────────────────────────────────── */
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background:  var(--background);
+  color:       var(--foreground);
+  font-family: var(--font-body, Georgia, serif);
+}
+
+/* ─── Typography helpers ─────────────────────────────────────────────────── */
+
+.font-heading { font-family: var(--font-heading); }
+.font-body    { font-family: var(--font-body); }
+
+.text-gold-shimmer {
+  background: linear-gradient(90deg, #d4a843, #f0d080, #d4a843, #e8c06a, #d4a843);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 5s linear infinite;
+}
+
+/* ─── Starfield ──────────────────────────────────────────────────────────── */
+
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  animation: twinkle var(--duration, 3s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* ─── Section separator ──────────────────────────────────────────────────── */
+
+.gold-rule {
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #d4a843, transparent);
+  margin: 0 auto;
+}
+
+/* ─── Planet orb ─────────────────────────────────────────────────────────── */
+
+.planet-orb {
+  border-radius: 50%;
+  animation: float var(--float-dur, 6s) ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+  position: relative;
+}
+
+.planet-orb::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: radial-gradient(circle, currentColor 0%, transparent 70%);
+  opacity: 0.3;
+  animation: glow-pulse var(--float-dur, 6s) ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+/* ─── Card hover ─────────────────────────────────────────────────────────── */
+
+.day-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.day-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+/* ─── Form styles ────────────────────────────────────────────────────────── */
+
+.signup-input {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(212, 168, 67, 0.35);
+  color: #f5ead0;
+  border-radius: 6px;
+  padding: 12px 16px;
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+.signup-input:focus {
+  border-color: #d4a843;
+  box-shadow: 0 0 0 3px rgba(212, 168, 67, 0.15);
+}
+
+.signup-input::placeholder {
+  color: rgba(196, 180, 144, 0.5);
+}
+
+.signup-input option {
+  background: #152535;
+  color: #f5ead0;
+}
+
+/* ─── CTA button ─────────────────────────────────────────────────────────── */
+
+.btn-primary {
+  background: linear-gradient(135deg, #d4a843, #c89b3c);
+  color: #0d1b2a;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  border-radius: 6px;
+  padding: 14px 32px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(212, 168, 67, 0.4);
+  opacity: 0.93;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #d4a843;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  border-radius: 6px;
+  padding: 13px 32px;
+  border: 1px solid #d4a843;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  background: rgba(212, 168, 67, 0.08);
+  box-shadow: 0 4px 20px rgba(212, 168, 67, 0.15);
 }
