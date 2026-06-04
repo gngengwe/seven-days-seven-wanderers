@@ -15,15 +15,17 @@ import Footer from "./components/Footer";
 export default function Home() {
   return (
     <main>
+      {/* — Explain the book — */}
       <Hero />
       <CoreIdea />
       <BookDescription />
-      <LanguageDiscovery />
-      <WeekGrid />
       <HowItWorks />
       <WhyItMatters />
       <Audience />
       <VisualStyle />
+      {/* — The spoiler: how it maps to other languages — */}
+      <LanguageDiscovery />
+      <WeekGrid />
       <ProjectWanderers />
       <Signup />
       <FinalCTA />

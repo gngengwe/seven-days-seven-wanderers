@@ -69,18 +69,9 @@ export default function BookDescription() {
             where the days of the week came from.
           </p>
           <p>
-            The story is told in English, with gentle language clues from Spanish,
-            French, Italian, and Portuguese — appearing not as full translations,
-            but as little pieces of evidence showing how the old planetary names
-            still live inside modern language.
-          </p>
-          <p>
-            Each edition in this series is written natively in its own language.
-            The English edition includes an addendum that gives readers context
-            for how other languages carry — or transformed — the same sky story.
-            A Spanish edition will read as a Spanish story first, with its own
-            addendum looking outward. Every language is its own entry point into
-            the same sky.
+            The story moves at the pace of a bedtime conversation — warm,
+            curious, unhurried. One day per chapter. One wanderer per day.
+            One discovery at a time.
           </p>
         </div>
 

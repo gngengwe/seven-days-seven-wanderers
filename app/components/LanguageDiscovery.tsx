@@ -34,32 +34,32 @@ export default function LanguageDiscovery() {
       />
 
       <div className="max-w-4xl mx-auto flex flex-col items-center gap-16">
-        {/* Heading */}
-        <div className="text-center flex flex-col items-center gap-4">
+        {/* Heading — the reveal */}
+        <div className="text-center flex flex-col items-center gap-6">
           <p
             className="text-xs tracking-[0.3em] uppercase font-body"
             style={{ color: "#d4a843", fontFamily: "var(--font-body)" }}
           >
-            Four Languages, One Discovery
+            The spoiler
           </p>
           <h2
-            className="font-heading text-3xl md:text-5xl leading-snug max-w-xl"
+            className="font-heading text-3xl md:text-5xl leading-snug max-w-2xl"
             style={{ fontFamily: "var(--font-heading)", color: "#fdf6e3" }}
           >
-            Four languages.
+            The names you use every day
             <br />
-            <em className="not-italic text-gold-shimmer">One bigger discovery.</em>
+            <em className="text-gold-shimmer not-italic">still remember the wanderers.</em>
           </h2>
           <div className="gold-rule" />
-        </div>
-
-        {/* Main copy */}
-        <div
-          className="text-center text-lg leading-relaxed max-w-2xl font-body"
-          style={{ color: "#c4b490", fontFamily: "var(--font-body)" }}
-        >
-          <p>
-            Spanish, French, and Italian still make many of the old planetary links easy to see.
+          <p
+            className="font-body text-lg leading-relaxed max-w-xl"
+            style={{ color: "#c4b490", fontFamily: "var(--font-body)" }}
+          >
+            Spanish, French, and Italian kept the planetary names visible — you
+            can still see them if you know where to look. English disguised them
+            through Norse mythology. Portuguese replaced them entirely through
+            religious tradition. Same sky. Three different stories about what
+            happened to the names.
           </p>
         </div>
 
