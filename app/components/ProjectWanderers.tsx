@@ -1,11 +1,9 @@
-const FUTURE_TITLES = [
-  "The months of the year",
-  "Holiday names",
-  "Idioms and sayings",
-  "Food words",
-  "Place names",
-  "Everyday objects",
-  "Words shaped by history, migration, science, and culture",
+const EDITIONS = [
+  { lang: "English",    note: "Volume 1 — in development", color: "#d4a843" },
+  { lang: "Spanish",    note: "Coming",                    color: "#dc4c2a" },
+  { lang: "French",     note: "Coming",                    color: "#94a3b8" },
+  { lang: "Portuguese", note: "Coming",                    color: "#b8a9e8" },
+  { lang: "Italian",    note: "Coming",                    color: "#f472b6" },
 ];
 
 export default function ProjectWanderers() {
@@ -45,8 +43,15 @@ export default function ProjectWanderers() {
         >
           <p>
             <em className="not-italic" style={{ color: "#fdf6e3" }}>Seven Days, Seven Wanderers</em>{" "}
-            is the first title in a larger creative project about the hidden histories
-            inside everyday words.
+            is the first title in a multilingual series. Each edition is written
+            natively in its own language — not translated, but authored from
+            that language&rsquo;s own vantage point on the sky.
+          </p>
+          <p>
+            Every edition includes a cross-language addendum: a window into how
+            other languages carried, disguised, or deliberately replaced the same
+            planetary names. The story is the same sky. The entry point changes
+            with every language.
           </p>
           <p>
             Project Wanderers asks:
@@ -69,30 +74,46 @@ export default function ProjectWanderers() {
           </p>
         </div>
 
-        {/* Future titles */}
+        {/* Editions */}
         <div className="flex flex-col items-center gap-6 w-full">
           <p
             className="text-sm tracking-widest uppercase font-body"
             style={{ color: "#a07830", fontFamily: "var(--font-body)" }}
           >
-            Future books may explore
+            Planned editions
           </p>
           <div className="flex flex-wrap justify-center gap-3">
-            {FUTURE_TITLES.map((title) => (
-              <span
-                key={title}
-                className="px-4 py-2 rounded-full text-sm font-body"
+            {EDITIONS.map((ed) => (
+              <div
+                key={ed.lang}
+                className="flex flex-col items-center px-5 py-3 rounded-xl gap-1"
                 style={{
-                  background: "rgba(212,168,67,0.06)",
-                  border: "1px solid rgba(212,168,67,0.15)",
-                  color: "#c4b490",
-                  fontFamily: "var(--font-body)",
+                  background: `${ed.color}0d`,
+                  border: `1px solid ${ed.color}33`,
                 }}
               >
-                {title}
-              </span>
+                <span
+                  className="font-heading text-base"
+                  style={{ fontFamily: "var(--font-heading)", color: ed.color }}
+                >
+                  {ed.lang}
+                </span>
+                <span
+                  className="text-xs font-body"
+                  style={{ color: "#6b7280", fontFamily: "var(--font-body)" }}
+                >
+                  {ed.note}
+                </span>
+              </div>
             ))}
           </div>
+          <p
+            className="text-sm font-body max-w-sm text-center"
+            style={{ color: "#6b7280", fontFamily: "var(--font-body)" }}
+          >
+            More languages to follow. Each edition authored natively,
+            not translated.
+          </p>
         </div>
 
         {/* Closing */}

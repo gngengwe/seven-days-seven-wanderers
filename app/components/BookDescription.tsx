@@ -74,6 +74,14 @@ export default function BookDescription() {
             but as little pieces of evidence showing how the old planetary names
             still live inside modern language.
           </p>
+          <p>
+            Each edition in this series is written natively in its own language.
+            The English edition includes an addendum that gives readers context
+            for how other languages carry — or transformed — the same sky story.
+            A Spanish edition will read as a Spanish story first, with its own
+            addendum looking outward. Every language is its own entry point into
+            the same sky.
+          </p>
         </div>
 
         {/* Example day cards */}

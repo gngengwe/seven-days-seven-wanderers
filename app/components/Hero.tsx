@@ -146,7 +146,7 @@ export default function Hero() {
           className="text-gold tracking-[0.25em] text-xs uppercase font-body"
           style={{ fontFamily: "var(--font-body)" }}
         >
-          A children&rsquo;s picture book &mdash; Coming Soon
+          Volume 1 &middot; English Edition &mdash; Coming Soon
         </p>
 
         {/* Main heading */}
