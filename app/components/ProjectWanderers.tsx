@@ -119,22 +119,10 @@ export default function ProjectWanderers() {
         {/* Closing */}
         <div className="flex flex-col items-center gap-4">
           <p
-            className="font-body text-base leading-relaxed max-w-lg"
-            style={{ color: "#c4b490", fontFamily: "var(--font-body)" }}
-          >
-            The first journey begins with the week.
-          </p>
-          <p
-            className="font-heading text-2xl"
-            style={{ fontFamily: "var(--font-heading)", color: "#fdf6e3" }}
-          >
-            Because every child knows the days.
-          </p>
-          <p
             className="font-heading text-xl"
             style={{ fontFamily: "var(--font-heading)", color: "#d4a843" }}
           >
-            <em>But not every child knows that the days came from the sky.</em>
+            <em>Same sky. Every language its own entry point.</em>
           </p>
         </div>
       </div>

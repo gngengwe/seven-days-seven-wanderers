@@ -77,19 +77,12 @@ export default function CoreIdea() {
 
         {/* Continuation */}
         <div
-          className="flex flex-col gap-6 text-lg leading-relaxed text-left md:text-center max-w-2xl"
+          className="flex flex-col gap-2 text-lg leading-relaxed text-left md:text-center max-w-2xl"
           style={{ color: "#c4b490", fontFamily: "var(--font-body)" }}
         >
           <p>
             Those seven wanderers became linked to the seven days of the week.
-          </p>
-          <p>
-            Later, languages changed. Cultures changed. Some names passed through Roman
-            mythology. Some passed through Norse mythology. Some were reshaped by
-            religious tradition.
-          </p>
-          <p>
-            But the pattern remained:
+            And the pattern held.
           </p>
         </div>
 

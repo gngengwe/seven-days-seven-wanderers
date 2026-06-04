@@ -108,25 +108,17 @@ export default function HowItWorks() {
               className="font-body text-base leading-relaxed"
               style={{ color: "#c4b490", fontFamily: "var(--font-body)" }}
             >
-              The Moon was once counted as a planet because it wandered through the
-              night sky. In Spanish, Monday is called{" "}
-              <em style={{ color: "#fdf6e3" }}>Lunes</em>, from{" "}
-              <em style={{ color: "#fdf6e3" }}>Luna</em>, the Moon.
-              The name still remembers its light.
+              The Moon was once counted as a planet because it wandered through
+              the night sky. It moved. It changed shape. It ruled the dark.
+              Ancient sky-watchers decided it deserved a day.
             </p>
-            <div
-              className="mt-2 pt-4 font-body text-sm leading-relaxed"
-              style={{
-                color: "#b8a9e8",
-                borderTop: "1px solid rgba(184,169,232,0.2)",
-                fontFamily: "var(--font-body)",
-              }}
+            <p
+              className="font-body text-sm"
+              style={{ color: "#6b7280", fontFamily: "var(--font-body)", fontStyle: "italic" }}
             >
-              <span className="uppercase tracking-wider text-xs" style={{ color: "#7a6a90" }}>Portuguese contrast — </span>
-              In Portuguese, Monday is{" "}
-              <em>Segunda-feira</em>, showing how some languages later renamed the week
-              through religious tradition rather than planets.
-            </div>
+              And the name still carries that memory — in ways you&rsquo;ll discover
+              when you read the book.
+            </p>
           </div>
         </div>
       </div>

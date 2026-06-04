@@ -40,7 +40,7 @@ export default function LanguageDiscovery() {
             className="text-xs tracking-[0.3em] uppercase font-body"
             style={{ color: "#d4a843", fontFamily: "var(--font-body)" }}
           >
-            The spoiler
+            Hidden in plain sight
           </p>
           <h2
             className="font-heading text-3xl md:text-5xl leading-snug max-w-2xl"

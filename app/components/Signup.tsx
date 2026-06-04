@@ -67,32 +67,33 @@ export default function Signup() {
             className="font-body text-base leading-relaxed max-w-lg"
             style={{ color: "#c4b490", fontFamily: "var(--font-body)" }}
           >
-            The book is currently in development. Join the launch list to receive:
+            The book is currently in development. Join the launch list and be
+            first to receive:
           </p>
         </div>
 
         {/* Benefits list */}
         <div className="grid sm:grid-cols-2 gap-3 w-full">
           {[
-            "Early artwork previews",
-            "Sample pages",
-            "Publication updates",
-            "Parent resources",
-            "Teacher resources",
-            "Preorder announcements",
-          ].map((benefit) => (
+            { text: "A free printable day-name activity sheet",   highlight: true },
+            { text: "First look at the cover illustration",        highlight: true },
+            { text: "Sample pages before publication",             highlight: false },
+            { text: "Publication and preorder updates",            highlight: false },
+            { text: "Parent and teacher resources",                highlight: false },
+            { text: "Notification when the book ships",            highlight: false },
+          ].map(({ text, highlight }) => (
             <div
-              key={benefit}
+              key={text}
               className="flex items-center gap-3 px-4 py-2 rounded-lg font-body text-sm"
               style={{
-                background: "rgba(212,168,67,0.06)",
-                border: "1px solid rgba(212,168,67,0.12)",
-                color: "#c4b490",
+                background: highlight ? "rgba(212,168,67,0.10)" : "rgba(212,168,67,0.04)",
+                border: highlight ? "1px solid rgba(212,168,67,0.3)" : "1px solid rgba(212,168,67,0.10)",
+                color: highlight ? "#fdf6e3" : "#c4b490",
                 fontFamily: "var(--font-body)",
               }}
             >
-              <span style={{ color: "#d4a843" }}>✦</span>
-              {benefit}
+              <span style={{ color: "#d4a843" }}>{highlight ? "★" : "✦"}</span>
+              {text}
             </div>
           ))}
         </div>

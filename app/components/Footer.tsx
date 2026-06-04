@@ -17,7 +17,13 @@ export default function Footer() {
           </span>
           <span
             className="font-body text-xs"
-            style={{ color: "#6b7280", fontFamily: "var(--font-body)" }}
+            style={{ color: "#c4b490", fontFamily: "var(--font-body)" }}
+          >
+            by George Ngengwe
+          </span>
+          <span
+            className="font-body text-xs"
+            style={{ color: "#4a5568", fontFamily: "var(--font-body)" }}
           >
             Project Wanderers — Days of the Week
           </span>

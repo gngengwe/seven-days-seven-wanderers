@@ -146,7 +146,7 @@ export default function Hero() {
           className="text-gold tracking-[0.25em] text-xs uppercase font-body"
           style={{ fontFamily: "var(--font-body)" }}
         >
-          Volume 1 &middot; English Edition &mdash; Coming Soon
+          The hidden story of the week above our heads
         </p>
 
         {/* Main heading */}

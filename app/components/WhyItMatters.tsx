@@ -1,10 +1,16 @@
-const LESSONS = [
-  "Ordinary words can have extraordinary histories.",
-  "Languages are connected across cultures and centuries.",
-  "Cultures reshape what they inherit from one another.",
-  "The sky shaped human imagination long before science named it.",
-  "Questions are worth asking — and worth asking together.",
-  "Grandparents and children can discover the world side by side.",
+const TRUTHS = [
+  {
+    heading: "Words are fossils.",
+    body: "Every name in every language carries the history of the people who spoke it. Most of us walk past that history every day without noticing.",
+  },
+  {
+    heading: "Different cultures made different choices.",
+    body: "They inherited the same sky and decided differently what to remember, what to rename, and what to replace. None of them were wrong.",
+  },
+  {
+    heading: "Asking \"where did that come from?\" is the beginning.",
+    body: "A child who asks that question about a word will eventually ask it about everything. That question is the most important education there is.",
+  },
 ];
 
 export default function WhyItMatters() {
@@ -76,35 +82,25 @@ export default function WhyItMatters() {
           </div>
         </div>
 
-        {/* What it teaches */}
-        <div className="w-full flex flex-col gap-4">
-          <p
-            className="text-center text-sm tracking-widest uppercase font-body mb-2"
-            style={{ color: "#a07830", fontFamily: "var(--font-body)" }}
-          >
-            It teaches that
-          </p>
-          {LESSONS.map((lesson, i) => (
+        {/* Three truths */}
+        <div className="w-full grid md:grid-cols-3 gap-6">
+          {TRUTHS.map((t) => (
             <div
-              key={i}
-              className="flex items-start gap-4 py-4 px-5 rounded-lg"
-              style={{ background: "rgba(212,168,67,0.04)", border: "1px solid rgba(212,168,67,0.08)" }}
+              key={t.heading}
+              className="rounded-xl p-6 flex flex-col gap-3"
+              style={{ background: "#0f2133", border: "1px solid rgba(212,168,67,0.12)" }}
             >
-              <span
-                className="shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-heading mt-0.5"
-                style={{
-                  background: "rgba(212,168,67,0.12)",
-                  color: "#d4a843",
-                  fontFamily: "var(--font-heading)",
-                }}
+              <h3
+                className="font-heading text-lg leading-snug"
+                style={{ fontFamily: "var(--font-heading)", color: "#fdf6e3" }}
               >
-                {i + 1}
-              </span>
+                {t.heading}
+              </h3>
               <p
-                className="font-body text-base leading-relaxed"
-                style={{ color: "#c4b490", fontFamily: "var(--font-body)" }}
+                className="font-body text-sm leading-relaxed"
+                style={{ color: "#8a9db5", fontFamily: "var(--font-body)" }}
               >
-                {lesson}
+                {t.body}
               </p>
             </div>
           ))}
