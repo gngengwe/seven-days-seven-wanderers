@@ -212,6 +212,87 @@ export default function LanguageDiscovery() {
           </div>
         </div>
 
+        {/* German — Mittwoch */}
+        <div className="max-w-2xl w-full flex flex-col items-center gap-6 text-center">
+          <div
+            className="w-14 h-14 rounded-full flex items-center justify-center text-lg font-heading"
+            style={{
+              background: "rgba(148,163,184,0.12)",
+              border: "1px solid rgba(148,163,184,0.35)",
+              color: "#94a3b8",
+              fontFamily: "var(--font-heading)",
+            }}
+          >
+            DE
+          </div>
+          <h3
+            className="font-heading text-2xl"
+            style={{ fontFamily: "var(--font-heading)", color: "#fdf6e3" }}
+          >
+            German made a third choice.
+          </h3>
+          <p
+            className="text-lg leading-relaxed font-body"
+            style={{ color: "#c4b490", fontFamily: "var(--font-body)" }}
+          >
+            Like English, German kept the Norse names for Thursday and Friday —
+            {" "}<em style={{ color: "#d4874a" }}>Donnerstag</em> (Donner, Thor&rsquo;s thunder)
+            and <em style={{ color: "#f472b6" }}>Freitag</em> (Freya&rsquo;s day).
+            But for Wednesday, German did something no other major European language did.
+          </p>
+
+          {/* Mittwoch callout */}
+          <div
+            className="w-full rounded-xl overflow-hidden"
+            style={{ border: "1px solid rgba(148,163,184,0.25)" }}
+          >
+            <div
+              className="px-6 py-4 flex flex-col gap-1"
+              style={{ background: "rgba(148,163,184,0.08)" }}
+            >
+              <span
+                className="font-heading text-3xl md:text-4xl"
+                style={{ fontFamily: "var(--font-heading)", color: "#fdf6e3" }}
+              >
+                Mittwoch.
+              </span>
+              <span
+                className="font-body text-sm tracking-widest uppercase"
+                style={{ color: "#94a3b8", fontFamily: "var(--font-body)" }}
+              >
+                Middle of the week.
+              </span>
+            </div>
+            <div
+              className="px-6 py-4"
+              style={{ background: "rgba(148,163,184,0.04)" }}
+            >
+              <p
+                className="font-body text-base leading-relaxed"
+                style={{ color: "#c4b490", fontFamily: "var(--font-body)" }}
+              >
+                German dropped both the Roman god (Mercury) and the Norse god (Woden)
+                entirely. No mythology. No planet. Just a practical description of where
+                Wednesday falls in the week. The wanderer is gone.
+              </p>
+            </div>
+          </div>
+
+          <div
+            className="rounded-xl p-6 w-full"
+            style={{ background: "rgba(148,163,184,0.06)", border: "1px solid rgba(148,163,184,0.15)" }}
+          >
+            <p
+              className="text-xl leading-snug font-heading"
+              style={{ fontFamily: "var(--font-heading)", color: "#fdf6e3" }}
+            >
+              Some languages disguised the planet.
+              <br />
+              <em style={{ color: "#94a3b8" }}>German erased it.</em>
+            </p>
+          </div>
+        </div>
+
         {/* Portuguese contrast */}
         <div className="max-w-2xl w-full flex flex-col items-center gap-6 text-center">
           <div
