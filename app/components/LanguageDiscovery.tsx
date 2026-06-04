@@ -110,6 +110,108 @@ export default function LanguageDiscovery() {
           ))}
         </div>
 
+        {/* English — Norse substitution */}
+        <div className="max-w-2xl w-full flex flex-col items-center gap-6 text-center">
+          <div
+            className="w-14 h-14 rounded-full flex items-center justify-center text-lg font-heading"
+            style={{
+              background: "rgba(212,168,67,0.12)",
+              border: "1px solid rgba(212,168,67,0.4)",
+              color: "#d4a843",
+              fontFamily: "var(--font-heading)",
+            }}
+          >
+            EN
+          </div>
+          <h3
+            className="font-heading text-2xl"
+            style={{ fontFamily: "var(--font-heading)", color: "#fdf6e3" }}
+          >
+            English tells a Norse story.
+          </h3>
+          <p
+            className="text-lg leading-relaxed font-body"
+            style={{ color: "#c4b490", fontFamily: "var(--font-body)" }}
+          >
+            When Germanic tribes adopted the Roman seven-day week, they kept the
+            planetary structure but replaced four of the Roman gods with their own
+            Norse equivalents — gods they considered a match.
+          </p>
+
+          {/* Norse mapping grid */}
+          <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-3">
+            {[
+              { day: "Tuesday",   norse: "Tyr",   planet: "Mars",    note: "Both gods of war",                    planetColor: "#dc4c2a" },
+              { day: "Wednesday", norse: "Woden", planet: "Mercury", note: "Both linked to wisdom and travelers",  planetColor: "#94a3b8" },
+              { day: "Thursday",  norse: "Thor",  planet: "Jupiter", note: "Both gods of thunder",                planetColor: "#d4874a" },
+              { day: "Friday",    norse: "Frigg", planet: "Venus",   note: "Both goddesses of love and beauty",   planetColor: "#f472b6" },
+            ].map((row) => (
+              <div
+                key={row.day}
+                className="flex items-start gap-3 rounded-lg px-4 py-3 text-left"
+                style={{ background: "rgba(212,168,67,0.05)", border: "1px solid rgba(212,168,67,0.12)" }}
+              >
+                <div className="flex flex-col gap-0.5 min-w-[90px]">
+                  <span
+                    className="font-heading text-base"
+                    style={{ fontFamily: "var(--font-heading)", color: "#fdf6e3" }}
+                  >
+                    {row.day}
+                  </span>
+                  <span
+                    className="font-body text-xs"
+                    style={{ color: "#d4a843", fontFamily: "var(--font-body)" }}
+                  >
+                    {row.norse}
+                  </span>
+                </div>
+                <div
+                  className="mt-1 shrink-0 text-xs font-body"
+                  style={{ color: "#6b7280", fontFamily: "var(--font-body)" }}
+                >
+                  →
+                </div>
+                <div className="flex flex-col gap-0.5">
+                  <span
+                    className="font-heading text-base"
+                    style={{ fontFamily: "var(--font-heading)", color: row.planetColor, fontStyle: "italic" }}
+                  >
+                    {row.planet}
+                  </span>
+                  <span
+                    className="font-body text-xs"
+                    style={{ color: "#6b7280", fontFamily: "var(--font-body)" }}
+                  >
+                    {row.note}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p
+            className="text-sm font-body"
+            style={{ color: "#6b7280", fontFamily: "var(--font-body)" }}
+          >
+            Sunday, Monday, and Saturday came directly from the Latin —
+            Sun&rsquo;s day, Moon&rsquo;s day, Saturn&rsquo;s day — and were not replaced.
+          </p>
+
+          <div
+            className="rounded-xl p-6 w-full"
+            style={{ background: "rgba(212,168,67,0.06)", border: "1px solid rgba(212,168,67,0.18)" }}
+          >
+            <p
+              className="text-xl leading-snug font-heading"
+              style={{ fontFamily: "var(--font-heading)", color: "#fdf6e3" }}
+            >
+              English kept the planetary structure.
+              <br />
+              <em>It just renamed the gods.</em>
+            </p>
+          </div>
+        </div>
+
         {/* Portuguese contrast */}
         <div className="max-w-2xl w-full flex flex-col items-center gap-6 text-center">
           <div
