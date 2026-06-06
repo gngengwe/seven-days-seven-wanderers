@@ -55,8 +55,39 @@ export default function ProjectWanderers() {
             with every language.
           </p>
           <p>
-            Project Wanderers asks:
+            The longer vision: a platform where any family can generate this book
+            in their language, with characters that look like them, in a visual
+            style from their world. The etymology stays true.
+            The story belongs to whoever is reading it.
           </p>
+        </div>
+
+        {/* Personalization vision */}
+        <div className="grid sm:grid-cols-3 gap-4 w-full">
+          {[
+            { label: "Your language", body: "Swahili, Arabic, Japanese, Portuguese — whichever language the child grows up inside." },
+            { label: "Your characters", body: "A grandmother, a mother, an uncle, a father. Whoever that adult is in the child's life." },
+            { label: "Your world", body: "The setting, the art style, the cultural detail. The sky is universal. The story is yours." },
+          ].map(({ label, body }) => (
+            <div
+              key={label}
+              className="rounded-xl p-5 flex flex-col gap-2"
+              style={{ background: "rgba(212,168,67,0.04)", border: "1px solid rgba(212,168,67,0.12)" }}
+            >
+              <p
+                className="font-heading text-base"
+                style={{ fontFamily: "var(--font-heading)", color: "#d4a843" }}
+              >
+                {label}
+              </p>
+              <p
+                className="font-body text-sm leading-relaxed"
+                style={{ color: "#8a9db5", fontFamily: "var(--font-body)" }}
+              >
+                {body}
+              </p>
+            </div>
+          ))}
         </div>
 
         {/* Series question */}
@@ -68,10 +99,9 @@ export default function ProjectWanderers() {
             className="font-heading text-2xl md:text-3xl leading-snug"
             style={{ fontFamily: "var(--font-heading)", color: "#fdf6e3" }}
           >
-            What if children could learn that
+            What if every child could find
             <br />
-            ordinary things are{" "}
-            <em className="text-gold-shimmer not-italic">not ordinary at all?</em>
+            <em className="text-gold-shimmer not-italic">their own sky in the same story?</em>
           </p>
         </div>
 

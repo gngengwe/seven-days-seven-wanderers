@@ -179,8 +179,8 @@ export default function Hero() {
             Seven Days, Seven Wanderers
           </h2>
           <p className="font-body text-sm tracking-wide" style={{ color: "#c4b490" }}>
-            A beautifully illustrated children&rsquo;s book about a grandmother,
-            her curious grandson, and the secret sky-story hidden inside the week.
+            A children&rsquo;s book about a child, the adult who loves them,
+            and the ancient sky-story hidden inside every ordinary week.
           </p>
           <div className="gold-rule" />
         </div>
@@ -191,7 +191,7 @@ export default function Hero() {
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-4 items-center justify-center mt-4">
           <a href="#signup" className="btn-primary text-base">
-            Join the Launch List
+            Follow the Build
           </a>
           <a href="#story" className="btn-secondary text-base">
             Discover the Story
