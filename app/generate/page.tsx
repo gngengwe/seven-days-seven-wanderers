@@ -256,15 +256,18 @@ export default function GeneratePage() {
                   </p>
                 </div>
 
-                <div className="flex flex-col">
+                <div
+                  className="flex flex-col overflow-y-auto"
+                  style={{ maxHeight: "300px" }}
+                >
                   {crossLang.map(({ code, name, entry }) =>
                     entry ? (
                       <div
                         key={code}
-                        className="flex items-start justify-between gap-3 py-2.5 border-b"
+                        className="flex items-start justify-between gap-3 py-2 border-b"
                         style={{ borderColor: "rgba(0,0,0,0.08)" }}
                       >
-                        <div className="flex flex-col gap-0.5">
+                        <div className="flex flex-col gap-0.5 min-w-0">
                           <span
                             className="font-body text-xs uppercase tracking-wider"
                             style={{ color: "#a07830", fontFamily: "var(--font-body)" }}
@@ -273,7 +276,7 @@ export default function GeneratePage() {
                           </span>
                           {entry.display_note && (
                             <span
-                              className="font-body text-xs"
+                              className="font-body text-xs leading-snug"
                               style={{ color: "#7a7060", fontFamily: "var(--font-body)" }}
                             >
                               {entry.display_note}
@@ -281,7 +284,7 @@ export default function GeneratePage() {
                           )}
                         </div>
                         <span
-                          className="font-heading text-xl shrink-0"
+                          className="font-heading text-lg shrink-0"
                           style={{ fontFamily: "var(--font-heading)", color: "#0d1b2a", fontStyle: "italic" }}
                         >
                           {entry.name}

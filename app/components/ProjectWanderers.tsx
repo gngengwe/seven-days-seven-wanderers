@@ -5,6 +5,12 @@ const EDITIONS = [
   { lang: "Portuguese", note: "Coming",                    color: "#b8a9e8" },
   { lang: "Italian",    note: "Coming",                    color: "#f472b6" },
   { lang: "German",     note: "Coming",                    color: "#cbd5e1" },
+  { lang: "Japanese",   note: "Coming",                    color: "#f59e0b" },
+  { lang: "Hindi",      note: "Coming",                    color: "#f472b6" },
+  { lang: "Arabic",     note: "Coming",                    color: "#94a3b8" },
+  { lang: "Russian",    note: "Coming",                    color: "#7dd3fc" },
+  { lang: "Swahili",    note: "Coming",                    color: "#86efac" },
+  { lang: "Dutch",      note: "Coming",                    color: "#c4b5fd" },
 ];
 
 export default function ProjectWanderers() {
