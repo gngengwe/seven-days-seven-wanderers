@@ -12,10 +12,35 @@ export default function Signup() {
     e.preventDefault();
     setState("submitting");
 
-    // TODO: Replace with email provider (Resend, ConvertKit, Mailchimp, etc.)
-    // Payload: { email }
-    await new Promise((res) => setTimeout(res, 800));
-    setState("success");
+    const key = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+
+    if (!key) {
+      // Local dev without .env.local — simulate success so the UI is testable
+      await new Promise((res) => setTimeout(res, 600));
+      setState("success");
+      return;
+    }
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: key,
+          email,
+          subject: "New follower — Seven Days, Seven Wanderers",
+          from_name: "Project Wanderers",
+        }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        setState("success");
+      } else {
+        setState("error");
+      }
+    } catch {
+      setState("error");
+    }
   }
 
   return (
