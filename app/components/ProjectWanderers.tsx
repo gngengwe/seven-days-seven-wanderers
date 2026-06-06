@@ -148,13 +148,26 @@ export default function ProjectWanderers() {
         </div>
 
         {/* Closing */}
-        <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-col items-center gap-5">
           <p
             className="font-heading text-xl"
             style={{ fontFamily: "var(--font-heading)", color: "#d4a843" }}
           >
             <em>Same sky. Every language its own entry point.</em>
           </p>
+          <a
+            href="/generate"
+            className="font-body text-sm px-6 py-2.5 rounded-xl transition-all hover:opacity-90"
+            style={{
+              fontFamily: "var(--font-body)",
+              background: "rgba(212,168,67,0.08)",
+              border: "1px solid rgba(212,168,67,0.3)",
+              color: "#d4a843",
+              textDecoration: "none",
+            }}
+          >
+            Try the prototype — pick a language and see a page &rarr;
+          </a>
         </div>
       </div>
 
