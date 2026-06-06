@@ -4,6 +4,7 @@ const EDITIONS = [
   { lang: "French",     note: "Coming",                    color: "#94a3b8" },
   { lang: "Portuguese", note: "Coming",                    color: "#b8a9e8" },
   { lang: "Italian",    note: "Coming",                    color: "#f472b6" },
+  { lang: "German",     note: "Coming",                    color: "#cbd5e1" },
 ];
 
 export default function ProjectWanderers() {

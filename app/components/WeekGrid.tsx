@@ -10,6 +10,8 @@ const DAYS = [
     italian: "Domenica",
     portuguese: "Domingo",
     ptNote: "Lord's Day; English preserves the older Sun-day",
+    german: "Sonntag",
+    deNote: "Sonne = Sun — direct",
   },
   {
     day: "Monday",
@@ -22,6 +24,8 @@ const DAYS = [
     italian: "Lunedì",
     portuguese: "Segunda-feira",
     ptNote: "Second fair/liturgical day",
+    german: "Montag",
+    deNote: "Mond = Moon — direct",
   },
   {
     day: "Tuesday",
@@ -34,6 +38,8 @@ const DAYS = [
     italian: "Martedì",
     portuguese: "Terça-feira",
     ptNote: "Third fair/liturgical day",
+    german: "Dienstag",
+    deNote: "Tyr's day via Norse",
   },
   {
     day: "Wednesday",
@@ -46,6 +52,8 @@ const DAYS = [
     italian: "Mercoledì",
     portuguese: "Quarta-feira",
     ptNote: "Fourth fair/liturgical day",
+    german: "Mittwoch",
+    deNote: "Middle of the week — planet erased",
   },
   {
     day: "Thursday",
@@ -58,6 +66,8 @@ const DAYS = [
     italian: "Giovedì",
     portuguese: "Quinta-feira",
     ptNote: "Fifth fair/liturgical day",
+    german: "Donnerstag",
+    deNote: "Donner (Thor) = Jupiter",
   },
   {
     day: "Friday",
@@ -70,6 +80,8 @@ const DAYS = [
     italian: "Venerdì",
     portuguese: "Sexta-feira",
     ptNote: "Sixth fair/liturgical day",
+    german: "Freitag",
+    deNote: "Freia (Freya) = Venus",
   },
   {
     day: "Saturday",
@@ -82,6 +94,8 @@ const DAYS = [
     italian: "Sabato",
     portuguese: "Sábado",
     ptNote: "Sabbath / rest tradition",
+    german: "Samstag",
+    deNote: "Sabbath tradition",
   },
 ];
 
@@ -90,12 +104,21 @@ function LangRow({
   value,
   isPt,
   ptNote,
+  isDe,
+  deNote,
 }: {
   lang: string;
   value: string;
   isPt?: boolean;
   ptNote?: string;
+  isDe?: boolean;
+  deNote?: string;
 }) {
+  const isSpecial = isPt || isDe;
+  const noteText = isPt ? ptNote : deNote;
+  const specialColor = isPt ? "#b8a9e8" : "#94a3b8";
+  const noteColor = isPt ? "#7a6a90" : "#5a6a7a";
+
   return (
     <div className="flex justify-between items-start gap-2 py-1 border-b border-white/5 last:border-0">
       <span
@@ -109,18 +132,18 @@ function LangRow({
           className="font-heading text-base"
           style={{
             fontFamily: "var(--font-heading)",
-            color: isPt ? "#b8a9e8" : "#fdf6e3",
+            color: isSpecial ? specialColor : "#fdf6e3",
             fontStyle: "italic",
           }}
         >
           {value}
         </span>
-        {isPt && ptNote && (
+        {isSpecial && noteText && (
           <p
             className="text-xs mt-0.5 font-body"
-            style={{ color: "#7a6a90", fontFamily: "var(--font-body)" }}
+            style={{ color: noteColor, fontFamily: "var(--font-body)" }}
           >
-            {ptNote}
+            {noteText}
           </p>
         )}
       </div>
@@ -208,12 +231,13 @@ export default function WeekGrid() {
                 <LangRow lang="ES" value={d.spanish} />
                 <LangRow lang="FR" value={d.french} />
                 <LangRow lang="IT" value={d.italian} />
+                <LangRow lang="DE" value={d.german} isDe deNote={d.deNote} />
                 <LangRow lang="PT" value={d.portuguese} isPt ptNote={d.ptNote} />
               </div>
             </div>
           ))}
 
-          {/* 7th card — Saturday gets no special treatment, but add legend card for 4-col layout */}
+          {/* Legend card — XL layout only */}
           <div
             className="rounded-xl p-6 flex flex-col justify-center items-center gap-3 text-center col-span-1 hidden xl:flex"
             style={{ background: "rgba(212,168,67,0.05)", border: "1px solid rgba(212,168,67,0.15)" }}
@@ -225,28 +249,25 @@ export default function WeekGrid() {
               Legend
             </p>
             <div className="flex flex-col gap-2 text-left w-full">
-              <div className="flex items-center gap-2">
-                <span className="text-xs uppercase tracking-wider font-body" style={{ color: "#a07830", fontFamily: "var(--font-body)" }}>ES</span>
-                <span className="text-sm font-body" style={{ color: "#c4b490", fontFamily: "var(--font-body)" }}>Spanish</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs uppercase tracking-wider font-body" style={{ color: "#a07830", fontFamily: "var(--font-body)" }}>FR</span>
-                <span className="text-sm font-body" style={{ color: "#c4b490", fontFamily: "var(--font-body)" }}>French</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs uppercase tracking-wider font-body" style={{ color: "#a07830", fontFamily: "var(--font-body)" }}>IT</span>
-                <span className="text-sm font-body" style={{ color: "#c4b490", fontFamily: "var(--font-body)" }}>Italian</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs uppercase tracking-wider font-body" style={{ color: "#7a6a90", fontFamily: "var(--font-body)" }}>PT</span>
-                <span className="text-sm font-body" style={{ color: "#b8a9e8", fontFamily: "var(--font-body)" }}>Portuguese*</span>
-              </div>
+              {[
+                { code: "ES", label: "Spanish",    color: "#a07830" },
+                { code: "FR", label: "French",     color: "#a07830" },
+                { code: "IT", label: "Italian",    color: "#a07830" },
+                { code: "DE", label: "German",     color: "#94a3b8" },
+                { code: "PT", label: "Portuguese", color: "#b8a9e8" },
+              ].map(({ code, label, color }) => (
+                <div key={code} className="flex items-center gap-2">
+                  <span className="text-xs uppercase tracking-wider font-body w-6" style={{ color, fontFamily: "var(--font-body)" }}>{code}</span>
+                  <span className="text-sm font-body" style={{ color: "#c4b490", fontFamily: "var(--font-body)" }}>{label}</span>
+                </div>
+              ))}
             </div>
             <p
               className="text-xs font-body mt-2"
               style={{ color: "#7a6a90", fontFamily: "var(--font-body)" }}
             >
-              * Portuguese weekday names Mon–Fri use liturgical numbering, not planetary names.
+              PT weekday names Mon–Fri use liturgical numbering.
+              DE Wednesday (Mittwoch) dropped the planet entirely.
             </p>
           </div>
         </div>
