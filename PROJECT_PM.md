@@ -2,6 +2,7 @@
 
 > Feed this document to any AI assistant to bring it up to full PM context.
 > Last updated: 2026-06-07
+> Illustration strategy: **Model A** (human-illustrated templates + layer compositing). Model C (full AI generation) reserved for future phase once character consistency is solved in Vertex AI.
 
 ---
 
@@ -122,59 +123,85 @@ A fully client-side, static page at `wanderers.ngengwe.com/generate`:
 - [ ] Activate Web3Forms (get key, add to Cloudflare, redeploy)
 - [ ] OG social share image (1200×630px) for link previews
 
-### Phase 2 — Book Generator v2 (Weeks)
-Transform the prototype into a real multi-page generated book experience.
+### Phase 2 — Illustration System (8–12 weeks, George's creative work)
 
-**Text generation pipeline:**
-- Expand `data/etymology.ts` with per-day narrative templates (parametric: language, narrator type, child name, child gender)
-- For each of 7 days: opening scene, wanderer story, language reveal, cross-language addendum page
-- Total: ~20–28 pages per book (standard picture book length)
-- Template engine: TypeScript string interpolation initially; AI-enhanced later
+**Model A: human-illustrated templates + layer compositing. No AI generation at order time.**
 
-**Illustration generation:**
-- One illustration per page (or per spread)
-- Input: day + narrator type + child name/gender + cultural setting + art style
-- Output: image for that page
-- **Nano Banana API**: primary candidate for illustration generation — needs evaluation (see Section 6)
+The core creative insight: characters face away from the viewer (toward the sky, toward the page). No faces needed. This makes characters universal, eliminates consistency problems, and is a stronger artistic choice.
 
-**Preview UI:**
-- Page-turner interface (flip animation)
-- Each spread: text left, illustration right (or both)
-- Mobile-friendly
+**Assets to create (total: ~94 files across 2 art styles):**
 
-### Phase 3 — Personalization Engine (Weeks–Months)
-The full "make it yours" system:
-- Language selection (from seeded + community-contributed languages)
-- Narrator: grandmother / mother / father / grandfather / uncle / aunt — any
-- Child: name, gender (pronouns), depicted appearance (for illustration prompts)
-- Cultural setting: geographic/cultural context (Lagos, Tokyo, São Paulo, Oslo...)
-- Art style: watercolor / geometric / Afrocentric illustration / ukiyo-e / minimalist
-- All selections feed into: narrative templates + illustration prompts
+| Asset group | Count | Description |
+|------------|-------|-------------|
+| Shared scene templates | 9 | Sky Scene, Question, Ancient Watchers, Language Spread, Reflection, Closing, 3× back matter layouts |
+| Planet illustrations | 7 | One hero illustration per wanderer — the centerpiece of each day |
+| Planet sky composites | 7 | Sky Scene template with each planet composited in |
+| Cultural setting backgrounds | 12 | 6 settings × 2 (interior + exterior night scene) |
+| Narrator silhouettes | 6 | Grandmother, grandfather, mother, father, uncle, aunt — no faces, silhouette + clothing cue |
+| Typography/layout pages | 6 | Language reveal spread, etymology glossary, reference spread, author's note |
 
-### Phase 4 — Commercialization (Months)
-Turn a generated book into a physical product.
+**6 cultural settings:** West African urban · East Asian · South Asian · Latin American · Northern European · Mediterranean · Universal (default)
 
-**Payment:**
-- Stripe integration
-- Pricing model: cost of print + markup + platform fee
-- Digital download option (PDF) at lower price point
+**2 art styles for launch:**
+- **Watercolor Warm** (primary) — soft edges, warm palette, timeless heirloom feel
+- **Graphic Bold** (secondary) — flat color, clean shapes, mid-century children's book aesthetic
 
-**Print-on-demand:**
-- Submit assembled print-ready PDF to POD API
-- POD service prints and ships directly to customer
-- No inventory held
-- See Section 7 for POD API evaluation
+**Production workflow per asset:**
+1. Use Google Imagen/Midjourney to generate rough composition reference (not the final image)
+2. Illustrate from that reference using your own skills (digital or traditional)
+3. Export as layered file: background / character silhouette / planet / atmosphere — separate layers
+4. System composites layers at order time — no AI at generation
 
-**Order management:**
-- Order confirmation email (via Web3Forms or transactional email service)
-- Order status tracking
-- Cloudflare Workers or Pages Functions for server-side logic (currently fully static — needs backend)
+**Generation at order time (compositing, not AI):**
+- User selects: language + narrator + setting + art style + child name
+- System selects correct layers, composites → PNG per page (~10–30 seconds total)
+- Child's name typeset on cover, dedication, and in-text dialogue
+- Assembles 28-page PDF → ready for print
+- Cost per book: ~$0 (no AI API calls)
+- Quality: identical every time
 
-### Phase 5 — Community & Crowdsourcing (Long-term)
-- Contributors add new languages to the etymology database
-- Native authors write language editions (not AI-translated)
-- Cross-language addendum populated from contributor data
-- Review/verification workflow for submitted etymology data
+### Phase 3 — Backend + Commerce (Weeks, after Phase 2 assets are ready)
+
+**3a — Remove static export, add Cloudflare Workers backend**
+- Remove `output: "export"` from next.config.ts
+- Install `@cloudflare/next-on-pages` adapter
+- Add Route Handlers for: compositing, PDF assembly, Stripe, POD
+- Storage: Cloudflare R2 for generated PDFs and layered assets
+- Book state: Cloudflare KV (no database needed at this stage)
+
+**3b — Compositing engine**
+- Cloudflare Worker accepts book config → selects correct asset layers from R2 → composites PNGs using `@cloudflare/images` or `sharp` WASM → assembles into 28-page PDF via `pdf-lib`
+- Trim size: 8.5" × 8.5", 300 DPI, CMYK-compatible
+
+**3c — Preview UI**
+- `/preview/[bookId]` page-turner interface
+- Spreads load progressively as pages composite
+- "Regenerate" placeholder (for future Model C upgrade)
+
+**3d — Stripe payment**
+- Pricing: Digital PDF $9.99 / Softcover $24.99 / Hardcover $34.99
+- `app/api/checkout/route.ts` → Stripe checkout session
+- `app/api/webhook/route.ts` → payment confirmation → triggers PDF finalization + POD
+
+**3e — Print-on-demand (Peecho recommended)**
+- POST assembled PDF to Peecho API with shipping address + product spec
+- Store Peecho order ID in KV against bookId
+- Confirmation email with estimated delivery
+
+### Phase 4 — Personalization Depth (Post-launch)
+- Additional cultural settings (user-requested)
+- Additional art styles (Style 3: Afrocentric painted; Style 4: ukiyo-e inspired)
+- Additional narrator types (teacher, older sibling)
+- Language expansion (community-contributed etymology entries)
+- Native authors write non-English narrative editions (not AI-translated — authored from within the language)
+
+### Phase 5 — Model C: Full AI Generation (Future, technology-dependent)
+Activate when Vertex AI reference images solve character consistency reliably:
+- Replace layer compositing with Imagen 3 generation using character reference sheet
+- Per-page illustration generation with locked style + character reference
+- Enables truly unlimited settings/styles beyond the 6 curated options
+- Pricing: ~$0.56–$1.12 per book in illustration API costs — factor into margin
+- Keep Model A as fallback (and as the cheaper/faster option for users who want it)
 
 ---
 
