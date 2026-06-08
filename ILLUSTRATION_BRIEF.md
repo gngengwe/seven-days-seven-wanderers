@@ -341,6 +341,26 @@ The compositor can be fully built and tested against these 27 files. Additional 
 
 ---
 
+## Phase 0 — Self-Production Learning Slice (do this before deciding how to source the rest)
+
+Before committing to either "illustrate it all myself" or "outsource everything," produce one complete spread solo:
+
+| Asset | Slot | Files |
+|-------|------|-------|
+| One planet hero (suggest: Moon — simplest palette) | 2.2 | 1 |
+| day-reveal-scene (the shared template reused across all 7 planet-day pages) | 1.10 | 1 |
+| One figure silhouette (suggest: child, seated) | 4.0 | 1 |
+| **Phase 0 total** | | **3** |
+
+Goal: not finished art, but firsthand answers to the questions that determine how Phase 1–2 should be sourced —
+- How long does one asset actually take, end to end (prompt → generate → revise → approve)?
+- Where does Imagen drift on consistency (palette, "no faces," figure proportions across regenerations)?
+- What does a usable revision loop look like, and how many passes does "good enough" take?
+
+**Hard stop:** timebox this to one weekend. The output of Phase 0 is not the 3 files — it's the judgment to write a sharper brief and evaluate outsourced work credibly. Once that judgment is in hand, hand the remaining 24 (Phase 1) and beyond to an illustrator or pipeline rather than continuing solo.
+
+---
+
 ## Composition Rules (apply to all assets)
 
 1. **No faces** — all figures face away from the viewer, toward the sky or an opening
