@@ -21,7 +21,7 @@ const lora = Lora({
 export const metadata: Metadata = {
   title: "Seven Days, Seven Wanderers — A Children's Book",
   description:
-    "A beautifully illustrated children's book about the hidden sky-story behind the days of the week, told through a grandmother, her grandson, and the ancient wanderers of the sky.",
+    "A beautifully illustrated children's book about the hidden sky-story behind the days of the week, told through a child, the adult who loves them, and the ancient wanderers of the sky.",
   openGraph: {
     title: "Seven Days, Seven Wanderers",
     description:

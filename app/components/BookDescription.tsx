@@ -50,7 +50,7 @@ export default function BookDescription() {
         >
           <p>
             <em className="not-italic" style={{ color: "#fdf6e3" }}>Seven Days, Seven Wanderers</em> follows
-            a young, inquisitive Black boy and his grandmother as they explore
+            a curious child and the adult who loves them as they explore
             where the days of the week came from.
           </p>
           <p>

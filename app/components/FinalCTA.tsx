@@ -55,7 +55,7 @@ export default function FinalCTA() {
           {[
             "Seven days.",
             "Seven wanderers.",
-            "One grandmother.",
+            "One grown-up who loves them.",
             "One curious child.",
             "A sky full of names we still speak every day.",
           ].map((line, i) => (

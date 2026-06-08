@@ -35,13 +35,13 @@ export default function HowItWorks() {
               side: "Left page",
               icon: "📖",
               description:
-                "A short read-aloud story moment between grandmother and grandson — warm, curious, unhurried.",
+                "A short read-aloud story moment between the child and the adult who loves them — warm, curious, unhurried.",
             },
             {
               side: "Right page",
               icon: "🎨",
               description:
-                "A warm, painterly illustration of the child, grandmother, and the wanderer connected to that day.",
+                "A warm, painterly illustration of the child, the adult, and the wanderer connected to that day.",
             },
             {
               side: "Language clue",
