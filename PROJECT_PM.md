@@ -196,37 +196,122 @@ Recommended path: keep Cloudflare Pages for the frontend, add Cloudflare Workers
 
 ---
 
-## 6. Nano Banana API — Integration Evaluation Needed
+## 6. Nano Banana (Google Imagen) — Illustration Generation
 
-**Status**: Not yet researched. Key questions to answer before proceeding:
+**What it is**: Google's text-to-image generation model — their equivalent to DALL-E. Accessible via two routes:
 
-1. **What does Nano Banana provide?** Text generation, image generation, or a combined book-creation pipeline?
-2. **Input format**: What parameters does it accept? (prompt style, art direction, character descriptions, page layout specs?)
-3. **Output format**: PNG/JPG images? PDF? Structured JSON with pages?
-4. **Quality**: Is the output children's picture book quality? What art styles does it support?
-5. **Pricing**: Per-generation cost? Rate limits? Batch pricing?
-6. **Latency**: How long does a generation take? Is it synchronous or async?
-7. **API authentication**: Key-based? OAuth?
-8. **Integration point**: Would it replace the illustration pipeline only, or handle text + layout as well?
+| Route | Best for | Auth | Cost |
+|-------|----------|------|------|
+| **Vertex AI Imagen** (via Google Cloud) | Production, fine-tuning, higher limits | GCP service account JSON | Pay-per-image (~$0.02–0.04/image on Imagen 3) |
+| **Gemini API** (via Google AI Studio) | Prototyping, simpler setup | API key | Free tier + pay-as-you-go |
 
-**Proposed integration architecture (once API is understood):**
+**Recommended path for this project**: Start with the Gemini API (simpler, API key auth, no GCP project required). Migrate to Vertex AI Imagen when ready for production scale or fine-tuned art styles.
+
+---
+
+### What it generates
+
+- **Input**: a text prompt describing the scene, art style, characters, mood
+- **Output**: PNG image (base64 or URL depending on SDK)
+- **Quality**: excellent for illustrated children's book aesthetics
+- **Style control**: art style is prompt-driven — e.g. "soft watercolor illustration, warm palette, grandmother and child looking at the night sky, West African setting, children's picture book style"
+- **Character consistency**: the main challenge — maintaining the same character appearance across 28 pages requires either (a) very precise prompting, (b) reference image input (Imagen supports this via Vertex AI), or (c) a seed/style token approach
+
+---
+
+### Illustration prompt structure (per page)
+
+Each page prompt is assembled from user settings + page content:
+
 ```
-User configures book (language, narrator, child, setting, style)
-         ↓
-Generate text content (from etymology data + narrative templates)
-         ↓
-For each page: build illustration prompt from text + user settings
-         ↓
-POST to Nano Banana API → receive image URL or base64
-         ↓
-Assemble pages: text + illustrations → print-ready layout
-         ↓
-Generate PDF (using pdf-lib or puppeteer on Cloudflare Worker)
-         ↓
-Store PDF in R2 → show preview → payment → POD submission
+[art style] illustration of [scene description from page text].
+[narrator description] and [child description] in [cultural setting].
+[mood/time of day]. Children's picture book style. [color palette guidance].
+No text in the image.
 ```
 
-**Action required**: Get Nano Banana API docs + credentials, document capabilities, then update this section with integration specifics.
+**Example for Monday (Moon), Hindi edition, grandmother narrator, child named Arjun, watercolor style:**
+```
+Soft watercolor illustration of an elderly Indian grandmother and a young boy 
+named Arjun sitting on a rooftop at night, looking up at a full moon. 
+The grandmother points to the sky with gentle wonder. Warm lantern light, 
+deep blue night sky, stars visible. Children's picture book style. 
+Soft, warm palette. No text in the image.
+```
+
+---
+
+### Integration architecture
+
+```
+[User configures book]
+  language + narrator + child (name/gender/appearance)
+  + cultural setting + art style
+         ↓
+[Cloudflare Worker: text pipeline]
+  Pull etymology data for selected language
+  Fill narrative templates (narrator, child name, pronouns)
+  Generate 28 page texts
+         ↓
+[Cloudflare Worker: illustration pipeline]
+  For each page: assemble prompt from page text + user settings
+  POST to Gemini API / Vertex AI Imagen
+  → receive image (base64 PNG)
+  → store in Cloudflare R2 with book ID + page number
+  (run sequentially or in batches to respect rate limits)
+         ↓
+[Preview]
+  Frontend polls R2 for completed pages
+  Renders page-turner as illustrations arrive (progressive loading)
+         ↓
+[Assemble PDF]
+  Cloudflare Worker: pdf-lib stitches text + images into print-ready PDF
+  Correct trim size (e.g. 8×8" or 8.5×8.5") + bleed + color profile
+  Store final PDF in R2
+         ↓
+[Payment → Print → Ship]
+  Stripe checkout → POD API submission → fulfillment
+```
+
+---
+
+### Gemini API setup (prototype)
+
+```bash
+# Install
+npm install @google/generative-ai
+
+# Environment variable
+GEMINI_API_KEY=your_key_here   # add to Cloudflare Workers secrets
+```
+
+```typescript
+// Cloudflare Worker illustration route
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+const genAI = new GoogleGenerativeAI(env.GEMINI_API_KEY);
+const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
+
+const result = await model.generateContent([
+  { text: illustrationPrompt },
+]);
+// result.response.candidates[0].content.parts → image data
+```
+
+> Note: image generation via Gemini API requires the model to support it (check current model list — `gemini-2.0-flash-exp` and `imagen-3.0` via Vertex AI are current as of mid-2025). Confirm the exact model ID before building.
+
+---
+
+### Key challenge: character consistency across 28 pages
+
+DALL-E and Imagen both struggle with this by default. Mitigation strategies:
+
+1. **Vertex AI Imagen with reference images** — upload a "character sheet" image as a reference, subsequent generations stay consistent. Requires Vertex AI (not the simpler Gemini API).
+2. **Style + seed locking** — use identical style descriptors and a fixed seed value on every page. Reduces variance but doesn't guarantee consistency.
+3. **Manual review + regenerate** — build a "regenerate this page" button in the preview UI so the user can replace any illustration they don't like before buying.
+4. **Illustrated style over realistic** — watercolor/sketch styles are more forgiving of minor character inconsistency than photorealistic styles. Lean into this.
+
+**Recommendation**: start with option 3 (user-controlled regeneration) for the prototype, migrate to option 1 (Vertex AI reference images) for the production product.
 
 ---
 
