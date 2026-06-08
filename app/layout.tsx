@@ -30,11 +30,13 @@ export const metadata: Metadata = {
     siteName: "Seven Days, Seven Wanderers",
     type: "website",
     locale: "en_US",
+    images: [{ url: "/og.png", width: 1200, height: 630, alt: "Seven Days, Seven Wanderers — A Children's Book" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Seven Days, Seven Wanderers",
     description: "The hidden story of the week above our heads.",
+    images: ["/og.png"],
   },
   robots: { index: true, follow: true },
   metadataBase: new URL("https://wanderers.ngengwe.com"),

@@ -4,8 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "node scripts/gen-og.mjs",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "gen-og": "node scripts/gen-og.mjs"
   },
   "dependencies": {
     "next": "16.2.7",
@@ -13,10 +15,13 @@
     "react-dom": "19.2.4"
   },
   "devDependencies": {
+    "@fontsource/playfair-display": "^5.2.8",
+    "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "satori": "^0.26.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

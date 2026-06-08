@@ -3,21 +3,33 @@ const PAIRS = [
     wanderer: "Moon",
     color: "#cbd5e1",
     symbol: "☽",
-    languages: ["Lunes", "Lundi", "Lunedì"],
+    languages: [
+      { code: "ES", word: "Lunes" },
+      { code: "FR", word: "Lundi" },
+      { code: "IT", word: "Lunedì" },
+    ],
     root: "Luna",
   },
   {
     wanderer: "Mars",
     color: "#dc4c2a",
     symbol: "♂",
-    languages: ["Martes", "Mardi", "Martedì"],
+    languages: [
+      { code: "ES", word: "Martes" },
+      { code: "FR", word: "Mardi" },
+      { code: "IT", word: "Martedì" },
+    ],
     root: "Mars",
   },
   {
     wanderer: "Venus",
     color: "#f472b6",
     symbol: "♀",
-    languages: ["Viernes", "Vendredi", "Venerdì"],
+    languages: [
+      { code: "ES", word: "Viernes" },
+      { code: "FR", word: "Vendredi" },
+      { code: "IT", word: "Venerdì" },
+    ],
     root: "Venus",
   },
 ];
@@ -87,15 +99,22 @@ export default function LanguageDiscovery() {
               </p>
 
               {/* Language words */}
-              <div className="flex flex-col items-center gap-1">
-                {p.languages.map((word) => (
-                  <span
-                    key={word}
-                    className="font-heading text-xl"
-                    style={{ fontFamily: "var(--font-heading)", color: "#fdf6e3", fontStyle: "italic" }}
-                  >
-                    {word}
-                  </span>
+              <div className="flex flex-col items-center gap-2 w-full">
+                {p.languages.map(({ code, word }) => (
+                  <div key={code} className="flex items-baseline justify-center gap-2 w-full">
+                    <span
+                      className="font-body text-xs uppercase tracking-wider shrink-0"
+                      style={{ color: "#a07830", fontFamily: "var(--font-body)", minWidth: "1.75rem", textAlign: "right" }}
+                    >
+                      {code}
+                    </span>
+                    <span
+                      className="font-heading text-xl"
+                      style={{ fontFamily: "var(--font-heading)", color: "#fdf6e3", fontStyle: "italic" }}
+                    >
+                      {word}
+                    </span>
+                  </div>
                 ))}
               </div>
 

@@ -74,41 +74,30 @@ function SkyIllustration() {
         />
       ))}
 
-      {/* Grandmother + grandson silhouettes */}
+      {/* Two silhouettes from behind, looking up at the wanderers */}
       <svg
         viewBox="0 0 320 160"
         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-64 md:w-80 opacity-90"
-        aria-label="Grandmother and grandson looking at the sky"
+        aria-label="Two figures from behind, looking up at the wandering planets"
       >
-        {/* Ground */}
-        <ellipse cx="160" cy="155" rx="140" ry="10" fill="rgba(212,168,67,0.12)" />
+        {/* Ground glow */}
+        <ellipse cx="160" cy="155" rx="140" ry="8" fill="rgba(212,168,67,0.10)" />
 
-        {/* Grandson (left, smaller) */}
+        {/* Child (left, smaller — back view, head tilted up) */}
         <g fill="#152535" stroke="none">
-          {/* body */}
-          <rect x="90" y="90" width="22" height="50" rx="4" />
-          {/* head */}
-          <circle cx="101" cy="82" r="13" />
-          {/* arm raised */}
-          <line x1="90" y1="105" x2="72" y2="82" stroke="#152535" strokeWidth="6" strokeLinecap="round"/>
-          {/* legs */}
-          <rect x="90" y="135" width="9" height="22" rx="3" />
-          <rect x="103" y="135" width="9" height="22" rx="3" />
+          <rect x="88" y="100" width="20" height="40" rx="5" />
+          <circle cx="98" cy="91" r="11" />
+          <line x1="88" y1="110" x2="73" y2="80" stroke="#152535" strokeWidth="5" strokeLinecap="round"/>
+          <rect x="88" y="134" width="8" height="22" rx="3" />
+          <rect x="100" y="134" width="8" height="22" rx="3" />
         </g>
 
-        {/* Grandmother (right, taller) */}
+        {/* Adult (right, taller — back view with flowing robe) */}
         <g fill="#1c3348" stroke="none">
-          {/* body / dress */}
-          <path d="M168 88 Q163 110 158 140 L185 140 Q181 110 178 88 Z" />
-          {/* head */}
-          <circle cx="173" cy="78" r="14" />
-          {/* shawl / shoulder drape */}
-          <path d="M158 92 Q160 80 173 78 Q186 80 188 92 Q180 98 173 95 Q166 98 158 92 Z" fill="#1c3348" />
-          {/* cane */}
-          <line x1="188" y1="105" x2="200" y2="148" stroke="#1c3348" strokeWidth="5" strokeLinecap="round"/>
-          {/* legs */}
-          <rect x="161" y="135" width="9" height="22" rx="3" />
-          <rect x="173" y="135" width="9" height="22" rx="3" />
+          <path d="M159 96 Q154 118 150 142 L194 142 Q190 118 185 96 Z" />
+          <circle cx="172" cy="83" r="14" />
+          <path d="M155 100 Q157 88 172 86 Q187 88 189 100 Q182 107 172 104 Q162 107 155 100 Z" />
+          <line x1="192" y1="112" x2="202" y2="148" stroke="#1c3348" strokeWidth="5" strokeLinecap="round"/>
         </g>
       </svg>
     </div>

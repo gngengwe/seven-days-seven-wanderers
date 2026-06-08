@@ -42,7 +42,7 @@ export default function VisualStyle() {
             </p>
             <ul className="flex flex-col gap-3">
               {[
-                "A grandmother and grandson sit under changing skies.",
+                "An adult and child sit beneath a glowing planetary sky — seen from behind, looking up.",
                 "The planets appear large and luminous — not as scientific diagrams, but as storybook presences.",
                 "The world feels familiar: a bedroom window, a backyard, a blanket, a warm lamp, a child looking up.",
               ].map((item, i) => (
@@ -147,9 +147,9 @@ export default function VisualStyle() {
                 className="font-body text-sm leading-relaxed"
                 style={{ color: "#8a9db5", fontFamily: "var(--font-body)" }}
               >
-                Warm painterly scene — grandmother and grandson
+                Warm painterly scene — adult and child
                 <br />
-                under a glowing planetary sky
+                seen from behind, beneath a glowing sky
               </p>
             </div>
           </div>
