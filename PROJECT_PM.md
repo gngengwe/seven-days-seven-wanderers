@@ -26,23 +26,26 @@ The book tells this story through the relationship between a child and the adult
 
 ## 3. What Has Been Built (Current State)
 
+> Last updated: 2026-06-09
+
 ### Infrastructure
 - **Stack**: Next.js 16.2.7 + TypeScript + Tailwind CSS v4, `output: "export"` (fully static)
-- **Hosting**: Cloudflare Pages, auto-deploys from GitHub on push
+- **Hosting**: Cloudflare Pages, auto-deploys from GitHub `main` branch on push
+  - **Important**: always push to `origin main` (not `main:master`) — production branch is `main`
 - **Repo**: `github.com/gngengwe/seven-days-seven-wanderers`
 - **Domain**: `wanderers.ngengwe.com`
 - **Corporate**: HK Clearway LLC (powered by becomiNG), owned by George-Leonard Ncheumeni Ngengwe
 
 ### Landing Page (`/`)
 A full narrative landing page with the following sections in deliberate order:
-1. **Hero** — "What if the days of the week were really stories from the sky?" + starfield + planet orbs + character silhouette
+1. **Hero** — "What if the days of the week were really stories from the sky?" + starfield + planet orbs + back-facing child + adult silhouette (figures always face away, toward the sky)
 2. **CoreIdea** — The week as a planetarium. Seven wanderer chips.
-3. **BookDescription** — Story + character teasers. No language spoilers.
+3. **BookDescription** — Story + character teasers (neutral "child and adult" framing — no fixed identity, no faces)
 4. **HowItWorks** — Four spread-format preview cards showing how a page works
 5. **WhyItMatters** — Three felt-statement truth cards
 6. **Audience** — Who this is for
-7. **VisualStyle** — Art direction description
-8. **LanguageDiscovery** — THE REVEAL: Romance clusters, EN Norse explainer, DE Mittwoch explainer, PT liturgical explainer
+7. **VisualStyle** — Art direction description (neutral adult + child, seen from behind)
+8. **LanguageDiscovery** — THE REVEAL: Romance clusters with language code indicators (ES/FR/IT), EN Norse explainer, DE Mittwoch explainer, PT liturgical explainer
 9. **WeekGrid** — All 7 days × 5 languages (ES/FR/IT/DE/PT) data-driven from etymology layer
 10. **ProjectWanderers** — Series vision + personalization vision (pick language, characters, world) + 12 planned editions + link to /generate
 11. **Signup** — Single email field, wired to Web3Forms (key pending activation)
@@ -114,6 +117,30 @@ A fully client-side, static page at `wanderers.ngengwe.com/generate`:
 - Wired to Web3Forms API using `NEXT_PUBLIC_WEB3FORMS_KEY` env var
 - Dev fallback: simulates success if key not present
 - **Pending**: user needs to get Web3Forms key and add to Cloudflare Pages env vars
+
+### Book Template (`/data/book-pages.ts`)
+- 28-page typed schema: `PageType`, `BookPage` interface, `illustrationSlot` keys
+- Parametric narrative strings with `{child}/{narrator}/{narratorPronoun}/{day}/{planet}/{dayEn}/{lang}` placeholders
+- `renderTemplate()`, `getSpread()`, `getPage()` helpers
+- Spread pairings verified (pages 24-25 share spread 13)
+
+### Illustration Brief (`ILLUSTRATION_BRIEF.md`)
+- 42 distinct assets × 2 styles (Watercolor Warm + Graphic Bold) = 84 files fully specified
+- Sections: shared scene templates (12), planet heroes (7), cultural setting backgrounds (12), figure silhouettes (8 inc. child × 2 postures), back matter (3)
+- **Phase 0** — self-production learning slice: 3 files (Moon planet hero + day-reveal-scene + child silhouette), one weekend timebox, goal is sourcing judgment not finished art
+- **Phase 1** — minimum set for English-edition preview: ~27 files, Watercolor Warm only
+- Exported to `ILLUSTRATION_BRIEF.docx` for sharing (gitignored)
+- Illustration principle: no faces, figures always face away toward the sky; cultural specificity from background layer, not figure layer
+
+### OG Social Image (`public/og.png`)
+- Generated at build time via `scripts/gen-og.mjs` (satori + @resvg/resvg-js)
+- Wired as `prebuild` npm hook — regenerates automatically on every Cloudflare Pages build
+- Uses `@fontsource/playfair-display` `.woff` file (not .woff2 — satori doesn't support woff2)
+
+### Stakeholder Briefing (`/stakeholders`)
+- Internal page, not linked from nav, `robots: noindex`
+- Accessible at `wanderers.ngengwe.com/stakeholders` by direct URL only
+- Covers: what we're building, how we got here, platform architecture, status table, roadmap, contact
 
 ---
 
